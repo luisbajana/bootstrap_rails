@@ -1,28 +1,39 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby version 2.0.0
+Rails 4.0.0
 
-Things you may want to cover:
+Basic integration between bootstrap and rails.
 
-* Ruby version
+1.- Edit the gemfile to add this gems:
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
 
-* System dependencies
+2.- Pulling the new modules, type in console:
+bundle install
 
-* Configuration
+3.- Then we need to install bootstrap in our project, so we type:
+rails generate bootstrap:install
 
-* Database creation
+4.- We can take advantage of bootstrap to generate templates for our project in an easy way, with simple commands, the configuration of this commands are described in more details in the bootstrap project site. To generate our template in a dynamic way we need to type:
+rails g bootstrap:layout application fixed
 
-* Database initialization
+5.- Scaffold generate boilerplate code with CRUD operations and views, in this case we use the example of an articles website.
+rails g scaffold articles title:string body:text
 
-* How to run the test suite
+6.- Now we have all the article structure created, if we want to set the home page as the articles home page, we need to write this line on the routes.rb file:
+root :to => "articles#index"
 
-* Services (job queues, cache servers, search engines, etc.)
+7.- Migration
+rake db:migrate
 
-* Deployment instructions
+8.- Now we can run the server
+rails s
 
-* ...
+If we want to modify the default style, you can edit the file under app/assets/stylesheets/bootstrap_and_overrides.css.less
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+9.- The default articles layout has a solution with bootstrap, and here's the code, the f means force to overwrite.
+rails g bootstrap:themed articles -f 
+
